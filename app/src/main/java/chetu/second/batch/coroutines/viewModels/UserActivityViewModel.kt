@@ -9,17 +9,23 @@ import chetu.second.batch.model.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UserActivityViewModel : ViewModel(){
     var userRepository: UserRepository = UserRepository()
     var user : MutableLiveData<List<User>> = MutableLiveData<List<User>>()
-    var list : List<User>? = null
+
 
     fun getUserData(){
         viewModelScope.launch {
+            var list : List<User>
             list = userRepository.getData()
+//            withContext(Dispatchers.Main){
+//                list = userRepository.getData()
+//            }
             Log.d("DATA", ""+list)
+            user.value = list
         }
-        user.value = list!!
+
     }
 }
