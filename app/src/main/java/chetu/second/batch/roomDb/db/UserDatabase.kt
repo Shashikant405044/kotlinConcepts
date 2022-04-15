@@ -9,7 +9,6 @@ import androidx.room.RoomDatabase
 abstract class UserDatabase : RoomDatabase() {
     abstract val dao : UserDao
 
-
     companion object{
        private val INSTANCE : UserDatabase? = null
         fun getInstance(context : Context) : UserDatabase{
