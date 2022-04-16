@@ -20,6 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:hint="First Name"
+            android:text="@={userViewModel.firstName}"
             />
         <EditText
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:hint="Last Name"
+            android:text="@={userViewModel.lastName}"
             />
         <EditText
             android:layout_width="match_parent"
@@ -38,6 +40,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:hint="Phone"
+            android:text="@={userViewModel.mobileNo}"
             />
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
@@ -46,14 +49,23 @@
             app:layout_constraintTop_toBottomOf="@id/et_mobile_no"
             android:layout_marginLeft="20dp"
             android:text="@{userViewModel.saveOrUpdate}"
+            android:onClick="@{() -> userViewModel.saveOrUpdateClick()}"
             />
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_clearordelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_mobile_no"
             android:layout_marginRight="20dp"
             android:text="@{userViewModel.clearAllOrDelete}"
+            android:onClick="@{() -> userViewModel.clearOrDeleteAll()}"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_recyclerview"
+            app:layout_constraintTop_toBottomOf="@+id/btn_clearordelete"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
