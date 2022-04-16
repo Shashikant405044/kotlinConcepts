@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 class UserRepository {
     // DB/Retrofit
     suspend fun getData(): List<User> {
-//        delay(3000)
+//   delay(3000)
         var list = listOf<User>(
             User(1, "A"),
             User(2, "B"),
