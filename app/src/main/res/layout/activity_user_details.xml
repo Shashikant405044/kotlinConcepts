@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/et_mobile_no"
             android:layout_marginRight="20dp"
             android:text="@{userViewModel.clearAllOrDelete}"
-            android:onClick="@{() -> userViewModel.clearOrDeleteAll()}"
+            android:onClick="@{() -> userViewModel.clearAllOrDelete()}"
             />
 
         <androidx.recyclerview.widget.RecyclerView

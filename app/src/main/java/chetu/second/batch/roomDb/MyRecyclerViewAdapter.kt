@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import chetu.second.batch.kotlinconcepts.databinding.ListItemsBinding
 import chetu.second.batch.roomDb.db.User
 
-class MyRecyclerViewAdapter(private val userList : List<User>) : RecyclerView.Adapter<MyViewHolder>(){
+class MyRecyclerViewAdapter(private val userList: List<User>, var selectedItem:(User) -> Unit) : RecyclerView.Adapter<MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflator = LayoutInflater.from(parent.context)
         val binding = ListItemsBinding.inflate(layoutInflator, parent, false)
@@ -14,7 +14,7 @@ class MyRecyclerViewAdapter(private val userList : List<User>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(userList[position])
+        holder.bind(userList[position], selectedItem)
     }
 
     override fun getItemCount(): Int {
@@ -23,8 +23,11 @@ class MyRecyclerViewAdapter(private val userList : List<User>) : RecyclerView.Ad
 }
 
 class MyViewHolder(val binding : ListItemsBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(user: User){
+    fun bind(user: User, selectedItem: (User) -> Unit){
         binding.tvName.text = user.firstName+" "+user.lastName
         binding.tvMobileNo.text = user.mobileNo
+        binding.rootItem.setOnClickListener {
+            selectedItem(user)
+        }
     }
 }

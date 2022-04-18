@@ -2,15 +2,15 @@ package chetu.second.batch.roomDb.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import chetu.second.batch.kotlinconcepts.R
 import chetu.second.batch.kotlinconcepts.databinding.ActivityUserDetailsBinding
 import chetu.second.batch.roomDb.MyRecyclerViewAdapter
+import chetu.second.batch.roomDb.db.User
 import chetu.second.batch.roomDb.db.UserDatabase
 import chetu.second.batch.roomDb.factory.UserDetailsViewModelFactory
 import chetu.second.batch.roomDb.repository.UserRepository
@@ -38,7 +38,14 @@ class UserDetailsActivity : AppCompatActivity() {
     }
        fun displayUsersList(){
         userViewModel.usersList.observe(this, Observer {
-            binding.userRecyclerview.adapter = MyRecyclerViewAdapter(it)
+            binding.userRecyclerview.adapter = MyRecyclerViewAdapter(it, {selectedItem : User -> onItemClickClistener(selectedItem)})
         })
+    }
+
+    fun onItemClickClistener(user : User){
+        Toast.makeText(this, "Selected name is ${user.firstName+" "+
+        user.lastName}", Toast.LENGTH_SHORT).show()
+
+        userViewModel.updateOrDelteteClick(user)
     }
 }

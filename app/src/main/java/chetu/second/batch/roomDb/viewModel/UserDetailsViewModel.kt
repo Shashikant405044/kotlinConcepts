@@ -16,12 +16,30 @@ class UserDetailsViewModel(val userRepository: UserRepository) : ViewModel() {
     var saveOrUpdate = MutableLiveData<String>()
     var clearAllOrDelete = MutableLiveData<String>()
 
+    var isUpdateOrDelete = false
+    private lateinit var userToUpdateOrDelte : User
+
+
     init {
         saveOrUpdate.value = "Save" // setting value to MutableLiveData
         clearAllOrDelete.value = "Clear All"
     }
 
     fun saveOrUpdateClick() {
+        if (isUpdateOrDelete){
+            userToUpdateOrDelte.firstName = firstName.value!!
+            userToUpdateOrDelte.lastName = lastName.value!!
+            userToUpdateOrDelte.mobileNo = mobileNo.value!!
+
+            update(userToUpdateOrDelte)
+
+            firstName.value = null
+            lastName.value = null
+            mobileNo.value = null
+
+            saveOrUpdate.value = "Save"
+            clearAllOrDelete.value = "Clear All"
+        }else{
         val fName = firstName.value!!
         val lName = lastName.value!!
         val  mobNo = mobileNo.value!!
@@ -29,6 +47,35 @@ class UserDetailsViewModel(val userRepository: UserRepository) : ViewModel() {
         firstName.value = null
         lastName.value = null
         mobileNo.value = null
+        }
+    }
+
+    fun updateOrDelteteClick(user: User){
+        firstName.value = user.firstName
+        lastName.value = user.lastName
+        mobileNo.value= user.mobileNo
+
+        isUpdateOrDelete = true
+        userToUpdateOrDelte = user
+
+        saveOrUpdate.value = "Update"
+        clearAllOrDelete.value = "Delete"
+
+    }
+
+    fun clearAllOrDelete(){
+        if (isUpdateOrDelete){
+            delete(userToUpdateOrDelte)
+
+            firstName.value = null
+            lastName.value = null
+            mobileNo.value = null
+
+            saveOrUpdate.value = "Save"
+            clearAllOrDelete.value = "Clear All"
+        }else{
+            clearAllOrDelete()
+        }
     }
 
     fun insert(user : User){
@@ -37,9 +84,21 @@ class UserDetailsViewModel(val userRepository: UserRepository) : ViewModel() {
         }
     }
 
-    fun clearOrDeleteAll(){
+    fun clearAll(){
         viewModelScope.launch {
             userRepository.deleteAll()
+        }
+    }
+
+    fun update(user: User){
+        viewModelScope.launch {
+            userRepository.update(user)
+        }
+    }
+
+    fun delete(user: User){
+        viewModelScope.launch {
+            userRepository.delete(user)
         }
     }
 

@@ -8,14 +8,14 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id : Int,
+    var id : Int,
 
     @ColumnInfo(name = "fName")
-    val firstName : String,
+    var firstName : String,
 
     @ColumnInfo(name = "lName")
-    val lastName : String,
+    var lastName : String,
 
     @ColumnInfo(name = "phone")
-    val mobileNo : String
+    var mobileNo : String
 )
