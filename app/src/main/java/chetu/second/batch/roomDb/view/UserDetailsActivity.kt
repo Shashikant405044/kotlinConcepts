@@ -34,8 +34,19 @@ class UserDetailsActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         displayUsersList()
+        userViewModel.navigateToDetails.observe(this, Observer {
+
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
+
+            }
+        })
 
     }
+
+
+
+
        fun displayUsersList(){
         userViewModel.usersList.observe(this, Observer {
             binding.userRecyclerview.adapter = MyRecyclerViewAdapter(it, {selectedItem : User -> onItemClickClistener(selectedItem)})
@@ -45,7 +56,6 @@ class UserDetailsActivity : AppCompatActivity() {
     fun onItemClickClistener(user : User){
         Toast.makeText(this, "Selected name is ${user.firstName+" "+
         user.lastName}", Toast.LENGTH_SHORT).show()
-
         userViewModel.updateOrDelteteClick(user)
     }
 }
