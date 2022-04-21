@@ -49,7 +49,11 @@ class UserDetailsActivity : AppCompatActivity() {
 
        fun displayUsersList(){
         userViewModel.usersList.observe(this, Observer {
-            binding.userRecyclerview.adapter = MyRecyclerViewAdapter(it, {selectedItem : User -> onItemClickClistener(selectedItem)})
+            binding.userRecyclerview.adapter = MyRecyclerViewAdapter(it) { selectedItem: User ->
+                onItemClickClistener(
+                    selectedItem
+                )
+            }
         })
     }
 
