@@ -1,4 +1,4 @@
-package chetu.second.batch.MvvmCleanArchitecture.data.model
+package chetu.second.batch.mvvmCleanArchitecture.data.model
 
 
 import com.google.gson.annotations.SerializedName

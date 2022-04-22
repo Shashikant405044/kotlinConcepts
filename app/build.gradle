@@ -16,6 +16,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "api_key", "\"cd852112b111a64a51cb4cade02819d8\""
+        buildConfigField "String","BASE_URL","\"https://api.themoviedb.org/3/\""
+
     }
 
     buildTypes {
@@ -45,11 +47,11 @@ android {
 dependencies {
     def roomVersion = "2.4.2"
     def paging_version = "2.1.2"
-    def dagger_hilt = "2.38.1"
     def view_model = "2.4.1"
     def retrofit_version = "2.9.0"
     def coroutine_version = "1.6.1"
     def glide_version = "4.13.0"
+    def dagger_version = "2.32"
 
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -78,8 +80,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-    implementation("com.google.dagger:hilt-android:$dagger_hilt")
-    kapt("com.google.dagger:hilt-android-compiler:$dagger_hilt")
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     implementation("androidx.paging:paging-runtime:$paging_version")
 

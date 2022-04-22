@@ -3,6 +3,7 @@
     package="chetu.second.batch.kotlinconcepts">
 
     <application
+        android:name="chetu.second.batch.mvvmCleanArchitecture.presentation.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,22 +11,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinConcepts">
         <activity
-            android:name="chetu.second.batch.roomDb.view.UserDetailsActivity"
+            android:name="chetu.second.batch.mvvmCleanArchitecture.presentation.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name="chetu.second.batch.roomDb.view.UserDetailsActivity"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
             android:name="chetu.second.batch.coroutines.views.UserActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name="chetu.second.batch.coroutines.CoroutineDemo"
