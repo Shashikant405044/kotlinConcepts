@@ -1,4 +1,4 @@
-package chetu.second.batch.MvvmCleanArchitecture.data.model
+package chetu.second.batch.mvvmCleanArchitecture.data.model
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
