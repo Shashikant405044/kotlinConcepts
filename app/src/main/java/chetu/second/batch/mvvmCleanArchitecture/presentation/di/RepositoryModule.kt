@@ -10,9 +10,9 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Singleton
     @Provides
-    fun provideMovieRepository(movieRemoteDatasource: RemoteMovieDataSourceImpl,
-                                movieLocalDatasource: LocalDbDataSourceImpl,
-                                movieCacheDatasource: CacheMovieDataSourceImpl) : MovieRepository {
+    fun provideMovieRepository(movieRemoteDatasource: RemoteMovieDataSource,
+                                movieLocalDatasource: LocalDbDataSource,
+                                movieCacheDatasource: CacheMovieDataSource) : MovieRepository {
                                 return MovieRepositoryImpl(movieRemoteDatasource, movieLocalDatasource, movieCacheDatasource)
     }
 }

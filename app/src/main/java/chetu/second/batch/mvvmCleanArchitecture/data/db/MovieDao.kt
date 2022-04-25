@@ -1,14 +1,11 @@
 package chetu.second.batch.mvvmCleanArchitecture.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import chetu.second.batch.mvvmCleanArchitecture.data.model.Movie
 
 @Dao
 interface MovieDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovie(movie : List<Movie>)
 
     @Update
