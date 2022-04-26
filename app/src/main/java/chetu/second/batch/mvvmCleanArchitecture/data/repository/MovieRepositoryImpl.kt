@@ -29,7 +29,6 @@ class MovieRepositoryImpl(private val movieRemoteDatasource : RemoteMovieDataSou
             val body : MovieList? = response.body()
             if (body!= null){
                 movieList = body.movie
-                movieLocalDatasource.saveMovieIntoDb(movieList)
             }
         }catch (exception : Exception){
             Log.d("MyTag", exception.message.toString())
